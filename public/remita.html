@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Aviel College</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+  
+    <form class="form-group card card-body shadow">
+           <script src="http://www.remitademo.net/payment/v1/remita-pay-inline.bundle.js"></script>
+           
+       <div class="container mt-100 ml-10">
+        
+           <div class="container col-sm-3 offset-3 card card-body shadow">
+            <h4 style="color:goldenrod;">De Aviel College</h4>
+            <label id="msg"></label>
+        <div class="form-group" text-align='center'>
+            <label>Fee Amount</label>
+            <input id='amount' placeholder="Amount in Naira" class="form-control" type="number" />
+          </div>
+          <div class="form-group">
+            <label>First NAME</label>
+            <input  id='first' type="text" placeholder="Enter FirstName"  class="form-control" required="true" />
+          </div>
+          <div class="form-group">
+            <label>Last NAME</label>
+            <input id='last' type="text" placeholder="Enter Last Name"  class="form-control" required="true" />
+          </div>
+          <div class="form-group">
+            <label>Narration</label>
+            <input id='narration' type="text" placeholder="Purpose of Payment"  class="form-control" required="true" />
+          </div>
+       <button class="btn btn-danger btn-block" type="button" onclick="makePayment()"> Continue </button>
+        </div>
+        <!-- <a href='login.remita.net/remita/onepage/6467674973/service.spa'>HERE</a> -->
+        </div>
+           </form>
+               <script>
+                   function makePayment() {
+                     var paymentEngine = RmPaymentEngine.init({
+                        key: "aGVscGluZ2hhbmRzNGFjdGl2ZXBlb3BsZUBnbWFpbC5jb218MjIzODE3NXwzNjIyNThkMWQ5MDI1ZWNmNjE1ZmUzZWM3NjI5NDAwZTlmOWQ3MDk1NjhmYjJmOWZjYTlhZWJiZjZjYTk5ZDZiZGZkMTFhMmFiNDUwNGExN2IyYzFmNTM5YTllM2M0MzdjY2RhMWRmYjA0MjAzZDhhMTZlNGYzMDVhNWEwNTVmZA==",
+                         customerId: "140700251",
+                         firstName: document.getElementById("first").value,
+                         lastName: document.getElementById('last').value,
+                         email: "helpinghands4activepeople@gmail.com",
+                         email: "info@deavielcollege.org",
+                         narration: document.getElementById('narration').value,
+                         amount:document.getElementById('amount').value,
+                         onSuccess: function (response) {
+                            document.getElementById('msg').innerHTML(response)
+                        //  console.log('callback Successful Response', response);
+                         },
+                         onError: function (response) {
+                            document.getElementById('msg').innerHTML(response)
+                        //  console.log('callback Error Response', response);
+                         },
+                         onClose: function () {
+                         console.log("closed");
+                         }
+                         });
+                         paymentEngine.showPaymentWidget();
+                       }
+                   </script>
+</body>
+
+</html>
